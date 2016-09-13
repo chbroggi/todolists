@@ -1,4 +1,4 @@
-<%= form_for(@todo_item) do |f| %>
+<%= form_for([@todo_list, @todo_item]) do |f| %> <!-- /todo_lists/:todo_list_id/todo_items/:id/edit -->
   <% if @todo_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@todo_item.errors.count, "error") %> prohibited this todo_item from being saved:</h2>
@@ -12,25 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :due_date %><br>
-    <%= f.date_select :due_date %>
-  </div>
-  <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :due_date %><br>
+    <%= f.date_select :due_date %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+  <% if @todo_item.persisted? %>
   <div class="field">
     <%= f.label :completed %><br>
     <%= f.check_box :completed %>
   </div>
-  <div class="field">
-    <%= f.label :todo_list_id %><br>
-    <%= f.text_field :todo_list_id %>
-  </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,0 +1,14 @@
+<h1>Login</h1>
+<%= form_for(:user, url: sessions_path) do |f| %> <!-- sessions_path maps to sessions#create action with URI= /sessions -->
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="action">
+    <%= f.submit "Login" %>
+  </div>
+<% end %>

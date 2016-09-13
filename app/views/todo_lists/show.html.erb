@@ -1,4 +1,28 @@
-<p id="notice"><%= notice %></p>
+<!-- bacause the todo item is a nested resource we embed the listing of the todo items in the show of a particular todo list -->
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Due date</th>
+      <th>Description</th>
+      <th>Completed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todo_list.todo_items.each do |todo_item| %>
+      <tr>
+        <td><%= todo_item.title %></td>
+        <td><%= todo_item.due_date %></td>
+        <td><%= todo_item.description %></td>
+        <td><%= todo_item.completed %></td>
+        <td><%= link_to 'Show', [@todo_list, todo_item] %></td>
+        <td><%= link_to 'Destroy', [@todo_list, todo_item], method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <p>
   <strong>List name:</strong>
@@ -9,6 +33,6 @@
   <strong>List due date:</strong>
   <%= @todo_list.list_due_date %>
 </p>
-
+<%= link_to 'New Todo Item', new_todo_list_todo_item_path(@todo_list) %> |
 <%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
 <%= link_to 'Back', todo_lists_path %>
